@@ -1,0 +1,55 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from TokenServerService WSDL service -->
+
+  <service name="TokenServer" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://server.soap.mdp.etf.unibl.org"/>
+      <parameter name="wsdlServiceElement" value="TokenServerService"/>
+      <parameter name="schemaQualified" value="http://server.soap.mdp.etf.unibl.org"/>
+      <parameter name="wsdlServicePort" value="TokenServer"/>
+      <parameter name="className" value="org.unibl.etf.mdp.soap.server.TokenServerSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="TokenServer"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="exists" qname="operNS:exists" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" returnQName="retNS:existsReturn" xmlns:retNS="http://server.soap.mdp.etf.unibl.org" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:subject" xmlns:pns="http://server.soap.mdp.etf.unibl.org" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getToken" qname="operNS:getToken" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" returnQName="retNS:getTokenReturn" xmlns:retNS="http://server.soap.mdp.etf.unibl.org" returnType="rtns:Token" xmlns:rtns="http://server.soap.mdp.etf.unibl.org" soapAction="" >
+        <parameter qname="pns:params" xmlns:pns="http://server.soap.mdp.etf.unibl.org" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="clearRedis" qname="operNS:clearRedis" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" soapAction="" >
+      </operation>
+      <operation name="getAktivne" qname="operNS:getAktivne" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" returnQName="retNS:getAktivneReturn" xmlns:retNS="http://server.soap.mdp.etf.unibl.org" returnType="rtns:Token" xmlns:rtns="http://server.soap.mdp.etf.unibl.org" soapAction="" >
+      </operation>
+      <operation name="getNeaktivne" qname="operNS:getNeaktivne" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" returnQName="retNS:getNeaktivneReturn" xmlns:retNS="http://server.soap.mdp.etf.unibl.org" returnType="rtns:Token" xmlns:rtns="http://server.soap.mdp.etf.unibl.org" soapAction="" >
+      </operation>
+      <operation name="odjavaIzRegistra" qname="operNS:odjavaIzRegistra" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://server.soap.mdp.etf.unibl.org" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="verifyToken" qname="operNS:verifyToken" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" returnQName="retNS:verifyTokenReturn" xmlns:retNS="http://server.soap.mdp.etf.unibl.org" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:token" xmlns:pns="http://server.soap.mdp.etf.unibl.org" type="tns:Token" xmlns:tns="http://server.soap.mdp.etf.unibl.org"/>
+      </operation>
+      <operation name="deactivateToken" qname="operNS:deactivateToken" xmlns:operNS="http://server.soap.mdp.etf.unibl.org" soapAction="" >
+        <parameter qname="pns:subject" xmlns:pns="http://server.soap.mdp.etf.unibl.org" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="verifyToken getNeaktivne odjavaIzRegistra getToken exists deactivateToken clearRedis getAktivne"/>
+
+      <typeMapping
+        xmlns:ns="http://server.soap.mdp.etf.unibl.org"
+        qname="ns:Token"
+        type="java:org.unibl.etf.mdp.soap.server.Token"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://server.soap.mdp.etf.unibl.org" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://server.soap.mdp.etf.unibl.org" xmlns:intf="http://server.soap.mdp.etf.unibl.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://server.soap.mdp.etf.unibl.org" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="exists">
+    <complexType>
+     <sequence>
+      <element name="subject" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="existsResponse">
+    <complexType>
+     <sequence>
+      <element name="existsReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getToken">
+    <complexType>
+     <sequence>
+      <element name="params" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getTokenResponse">
+    <complexType>
+     <sequence>
+      <element name="getTokenReturn" type="impl:Token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Token">
+    <sequence>
+     <element name="expTime" nillable="true" type="xsd:long"/>
+     <element name="header" nillable="true" type="xsd:string"/>
+     <element name="payload" nillable="true" type="xsd:string"/>
+     <element name="sign" nillable="true" type="xsd:string"/>
+     <element name="subject" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="clearRedis">
+    <complexType/>
+   </element>
+   <element name="clearRedisResponse">
+    <complexType/>
+   </element>
+   <element name="getAktivne">
+    <complexType/>
+   </element>
+   <element name="getAktivneResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAktivneReturn" type="impl:Token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getNeaktivne">
+    <complexType/>
+   </element>
+   <element name="getNeaktivneResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getNeaktivneReturn" type="impl:Token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="odjavaIzRegistra">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="odjavaIzRegistraResponse">
+    <complexType/>
+   </element>
+   <element name="verifyToken">
+    <complexType>
+     <sequence>
+      <element name="token" type="impl:Token"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="verifyTokenResponse">
+    <complexType>
+     <sequence>
+      <element name="verifyTokenReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deactivateToken">
+    <complexType>
+     <sequence>
+      <element name="subject" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deactivateTokenResponse">
+    <complexType/>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getTokenResponse">
+
+      <wsdl:part element="impl:getTokenResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="existsRequest">
+
+      <wsdl:part element="impl:exists" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateTokenResponse">
+
+      <wsdl:part element="impl:deactivateTokenResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="existsResponse">
+
+      <wsdl:part element="impl:existsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAktivneRequest">
+
+      <wsdl:part element="impl:getAktivne" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAktivneResponse">
+
+      <wsdl:part element="impl:getAktivneResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTokenRequest">
+
+      <wsdl:part element="impl:getToken" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNeaktivneResponse">
+
+      <wsdl:part element="impl:getNeaktivneResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deactivateTokenRequest">
+
+      <wsdl:part element="impl:deactivateToken" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="clearRedisRequest">
+
+      <wsdl:part element="impl:clearRedis" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNeaktivneRequest">
+
+      <wsdl:part element="impl:getNeaktivne" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="verifyTokenRequest">
+
+      <wsdl:part element="impl:verifyToken" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="verifyTokenResponse">
+
+      <wsdl:part element="impl:verifyTokenResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="odjavaIzRegistraRequest">
+
+      <wsdl:part element="impl:odjavaIzRegistra" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="odjavaIzRegistraResponse">
+
+      <wsdl:part element="impl:odjavaIzRegistraResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="clearRedisResponse">
+
+      <wsdl:part element="impl:clearRedisResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TokenServer">
+
+      <wsdl:operation name="exists">
+
+         <wsdl:input message="impl:existsRequest" name="existsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:existsResponse" name="existsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getToken">
+
+         <wsdl:input message="impl:getTokenRequest" name="getTokenRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getTokenResponse" name="getTokenResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="clearRedis">
+
+         <wsdl:input message="impl:clearRedisRequest" name="clearRedisRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:clearRedisResponse" name="clearRedisResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAktivne">
+
+         <wsdl:input message="impl:getAktivneRequest" name="getAktivneRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAktivneResponse" name="getAktivneResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNeaktivne">
+
+         <wsdl:input message="impl:getNeaktivneRequest" name="getNeaktivneRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getNeaktivneResponse" name="getNeaktivneResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="odjavaIzRegistra">
+
+         <wsdl:input message="impl:odjavaIzRegistraRequest" name="odjavaIzRegistraRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:odjavaIzRegistraResponse" name="odjavaIzRegistraResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verifyToken">
+
+         <wsdl:input message="impl:verifyTokenRequest" name="verifyTokenRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:verifyTokenResponse" name="verifyTokenResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateToken">
+
+         <wsdl:input message="impl:deactivateTokenRequest" name="deactivateTokenRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deactivateTokenResponse" name="deactivateTokenResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TokenServerSoapBinding" type="impl:TokenServer">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="exists">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="existsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="existsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getToken">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTokenRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTokenResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="clearRedis">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="clearRedisRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="clearRedisResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAktivne">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAktivneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAktivneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNeaktivne">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNeaktivneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNeaktivneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="odjavaIzRegistra">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="odjavaIzRegistraRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="odjavaIzRegistraResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="verifyToken">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="verifyTokenRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="verifyTokenResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deactivateToken">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deactivateTokenRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deactivateTokenResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TokenServerService">
+
+      <wsdl:port binding="impl:TokenServerSoapBinding" name="TokenServer">
+
+         <wsdlsoap:address location="http://localhost:8080/MDP_TokenServer/services/TokenServer"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

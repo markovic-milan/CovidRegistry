@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/org/unibl/etf/mdp/soap/server/Token.java=UTF-8
+encoding//src/org/unibl/etf/mdp/soap/server/TokenServer.java=UTF-8
+encoding//src/org/unibl/etf/mdp/soap/server/TokenServerService.java=UTF-8
+encoding//src/org/unibl/etf/mdp/soap/server/TokenServerServiceLocator.java=UTF-8
+encoding//src/org/unibl/etf/mdp/soap/server/TokenServerSoapBindingStub.java=UTF-8

@@ -1,0 +1,81 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\WIN10\Desktop\MDP\soapServices\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TokenServer\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="TokenServer" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="exists" qname="ns1:exists" returnQName="ns1:existsReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://server.soap.mdp.etf.unibl.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:subject" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="getToken" qname="ns2:getToken" returnQName="ns2:getTokenReturn" returnType="ns2:Token" soapAction="" xmlns:ns2="http://server.soap.mdp.etf.unibl.org">
+   <ns1:parameter qname="ns2:params" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="clearRedis" qname="ns3:clearRedis" soapAction="" xmlns:ns3="http://server.soap.mdp.etf.unibl.org"/>
+  <ns1:operation name="getAktivne" qname="ns4:getAktivne" returnQName="ns4:getAktivneReturn" returnType="ns4:Token" soapAction="" xmlns:ns4="http://server.soap.mdp.etf.unibl.org"/>
+  <ns1:operation name="getNeaktivne" qname="ns5:getNeaktivne" returnQName="ns5:getNeaktivneReturn" returnType="ns5:Token" soapAction="" xmlns:ns5="http://server.soap.mdp.etf.unibl.org"/>
+  <ns1:operation name="odjavaIzRegistra" qname="ns6:odjavaIzRegistra" soapAction="" xmlns:ns6="http://server.soap.mdp.etf.unibl.org">
+   <ns1:parameter qname="ns6:username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:operation name="verifyToken" qname="ns7:verifyToken" returnQName="ns7:verifyTokenReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://server.soap.mdp.etf.unibl.org" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:token" type="ns7:Token"/>
+  </ns1:operation>
+  <ns1:operation name="deactivateToken" qname="ns8:deactivateToken" soapAction="" xmlns:ns8="http://server.soap.mdp.etf.unibl.org">
+   <ns1:parameter qname="ns8:subject" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="verifyToken getNeaktivne odjavaIzRegistra getToken exists deactivateToken clearRedis getAktivne"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="TokenServer"/>
+  <ns1:parameter name="className" value="org.unibl.etf.mdp.soap.server.TokenServer"/>
+  <ns1:parameter name="wsdlServicePort" value="TokenServer"/>
+  <ns1:parameter name="schemaQualified" value="http://server.soap.mdp.etf.unibl.org"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://server.soap.mdp.etf.unibl.org"/>
+  <ns1:parameter name="wsdlServiceElement" value="TokenServerService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Token" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:org.unibl.etf.mdp.soap.server.Token" xmlns:ns9="http://server.soap.mdp.etf.unibl.org"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

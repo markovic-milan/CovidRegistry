@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.unibl.etf.mdp.gui.app.DesktopApp">
+   <children>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="605.0" prefWidth="1050.0">
+         <children>
+            <MenuBar fx:id="menuBar" />
+            <BorderPane fx:id="borderPane" prefHeight="605.0">
+               <center>
+                  <VBox fx:id="vBox" maxWidth="500.0" prefHeight="200.0" spacing="5.0" BorderPane.alignment="TOP_RIGHT">
+                     <children>
+                        <HBox prefHeight="35.0">
+                           <children>
+                              <Label prefHeight="30.0" text="X=">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField alignment="CENTER" prefHeight="30.0" prefWidth="35.0" promptText="X" fx:id="xTF" />
+                              <Region prefWidth="15.0" />
+                              <Label prefHeight="30.0" text="Y=">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="yTF" alignment="CENTER" prefHeight="30.0" prefWidth="35.0" promptText="Y" />
+                              <Region prefWidth="30.0" />
+                              <Label prefHeight="30.0" text="Od">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="odHH" alignment="CENTER" prefHeight="30.0" prefWidth="35.0" promptText="hh" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" text=":">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="odMIN" alignment="CENTER" prefHeight="30.0" prefWidth="35.0" promptText="min" />
+                              <Region prefWidth="15.0" />
+                              <DatePicker fx:id="odDate" prefHeight="30.0" prefWidth="180.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="30.0">
+                           <children>
+                              <Region prefHeight="30.0" prefWidth="155.0" />
+                              <Label prefHeight="30.0" text="Do">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="doHH" alignment="CENTER" prefHeight="30.0" prefWidth="35.0" promptText="hh" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" text=":">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="doMIN" alignment="CENTER" prefHeight="30.0" prefWidth="35.0" promptText="min" />
+                              <Region prefWidth="15.0" />
+                              <DatePicker fx:id="doDate" prefHeight="30.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <Separator />
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </center>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <top>
+                  <VBox prefHeight="50.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <HBox prefHeight="50.0" spacing="20.0">
+                           <children>
+                              <Button fx:id="detaljiButton" alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Detalji">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Label fx:id="informacijeLabel" prefHeight="30.0" text="INFORMACIJE">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <Separator prefHeight="4.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Separator>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </VBox>
+               </top>
+               <right>
+                  <HBox prefWidth="180.0" spacing="5.0" BorderPane.alignment="TOP_RIGHT">
+                     <children>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" />
+                        <VBox prefHeight="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="slanjeFajlovaButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="Slanje Fajlova" />
+                              <Button fx:id="sendButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="160.0" text="SEND" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+               </right>
+               <left>
+                 
+               </left>
+               <left>
+                  <AnchorPane prefWidth="350.0" BorderPane.alignment="CENTER" />
+               </left>
+            </BorderPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
